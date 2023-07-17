@@ -5,15 +5,15 @@ const PORT = 4000;
 app.set('json spaces', 2)
 app.use(express.urlencoded({ extended: true }));
 const manejoProductos = new ProductManager('./src/file.json');
-await manejoProductos.cargarProductos();
 
 app.get('/products', async (req, res) => {
     const { limit } = req.query;
     res.set('Content-Type', 'application/json');
+    const productos = await manejoProductos.getProducts();
     if (limit > 0) {
-        res.send(manejoProductos.products.slice(0, limit));
+        res.send(productos.slice(0, limit));
     } else {
-        res.send(manejoProductos.products);
+        res.send(productos);
     }
 
     
@@ -37,4 +37,3 @@ app.get('/products/:pid', async (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server levantado en el puerto ${PORT}`)
 })
-
