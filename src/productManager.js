@@ -178,5 +178,3 @@ export class ProductManager {
     }
 
 }
-
-//module.export = ProductManager;
