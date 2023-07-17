@@ -11,9 +11,9 @@ app.get('/products', async (req, res) => {
     const { limit } = req.query;
     res.set('Content-Type', 'application/json');
     if (limit > 0) {
-        res.send(await manejoProductos.products.slice(0, limit));
+        res.send(manejoProductos.products.slice(0, limit));
     } else {
-        res.send(await manejoProductos.products);
+        res.send(manejoProductos.products);
     }
 
     
